@@ -13,7 +13,6 @@
             background: linear-gradient(135deg, #c177ac, #99788f);
             font-family: 'Arial', sans-serif;
             margin: 0;
-            position: relative;
             flex-direction: column;
         }
         #message {
@@ -35,9 +34,10 @@
             cursor: pointer;
             border-radius: 8px;
             transition: transform 0.3s ease, background-color 0.3s ease;
-            margin: 10px 0; /* Yalnızca dikey mesafe ekledik */
-            width: 80%; /* Butonları %80 genişliğinde yapıyoruz */
-            display: block;
+            margin: 10px 0; /* Butonlar arasında dikey mesafe */
+            width: 80%; /* Buton genişliğini %80 yaptık */
+            display: block; /* Butonları dikeyde sıralamak için */
+            text-align: center; /* Metin hizalaması */
         }
         button:hover {
             background-color: #83a168;
@@ -130,7 +130,7 @@
             buttonYes.onclick = showHeartsAndConfetti; // Kalp ve konfeti için fonksiyonu çağır
             document.body.appendChild(buttonYes);
 
-            // Hayır butonunu ekle ama işlevsizlik ver
+            // Hayır butonunu ekle
             let buttonNo = document.createElement('button');
             buttonNo.innerText = 'Hayır';
             buttonNo.id = 'noButton'; // ID ekle
@@ -179,6 +179,7 @@
     </script>
 </body>
 </html>
+
 
 
 
