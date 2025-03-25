@@ -14,6 +14,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             flex-direction: column;
+            position: relative;
         }
         #message {
             font-size: 32px;
@@ -87,6 +88,19 @@
             50% { transform: scale(1.5); opacity: 0.8; }
             100% { transform: scale(1); opacity: 1; }
         }
+
+        /* Ortada bulunan yazı için */
+        #loveQuestion {
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
     </style>
 </head>
 <body>
@@ -111,33 +125,31 @@
         }
 
         function askLoveQuestion() {
-            // "Beni seviyor musun?" sorusunu ekle
-            let message = document.createElement('div');
-            message.innerHTML = "Beni seviyor musun? ❤️";
-            message.style.fontSize = '24px';
-            message.style.color = 'white';
-            message.style.position = 'absolute';
-            message.style.top = '50%';
-            message.style.left = '50%';
-            message.style.transform = 'translate(-50%, -50%)';
-            document.body.appendChild(message);
-            
-            // Evet butonunu ekle
-            let buttonYes = document.createElement('button');
-            buttonYes.innerText = 'Evet';
-            buttonYes.id = 'yesButton'; // ID ekle
-            buttonYes.style.position = 'relative';
-            buttonYes.onclick = showHeartsAndConfetti; // Kalp ve konfeti için fonksiyonu çağır
-            document.body.appendChild(buttonYes);
+    // "Beni seviyor musun?" sorusunu ekle
+    let loveMessage = document.createElement('div');
+    loveMessage.innerHTML = "Beni seviyor musun? ❤️";
+    loveMessage.id = "loveQuestion";  // Ortada kalması için ID ekle
+    document.body.appendChild(loveMessage);
 
-            // Hayır butonunu ekle
-            let buttonNo = document.createElement('button');
-            buttonNo.innerText = 'Hayır';
-            buttonNo.id = 'noButton'; // ID ekle
-            buttonNo.style.position = 'relative';
-            buttonNo.disabled = true;  // Hayır butonunu devre dışı bırak
-            document.body.appendChild(buttonNo);
-        }
+    // Evet butonunu ekle
+    let buttonYes = document.createElement('button');
+    buttonYes.innerText = 'Evet';
+    buttonYes.id = 'yesButton'; // ID ekle
+    buttonYes.style.position = 'relative';
+    buttonYes.onclick = showHeartsAndConfetti; // Kalp ve konfeti için fonksiyonu çağır
+    document.body.appendChild(buttonYes);
+
+    // Hayır butonunu ekle
+    let buttonNo = document.createElement('button');
+    buttonNo.innerText = 'Hayır';
+    buttonNo.id = 'noButton'; // ID ekle
+    buttonNo.style.position = 'relative';
+    buttonNo.disabled = true;  // Hayır butonunu devre dışı bırak
+    buttonNo.style.backgroundColor = '#FF0000';  // Kırmızı renk
+    buttonNo.style.color = 'white';  // Yazı rengini beyaz yap
+    document.body.appendChild(buttonNo);
+}
+
 
         function showHeartsAndConfetti() {
             // Kalp animasyonu ve konfeti göster
@@ -179,6 +191,7 @@
     </script>
 </body>
 </html>
+
 
 
 
