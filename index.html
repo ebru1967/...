@@ -35,8 +35,9 @@
             cursor: pointer;
             border-radius: 8px;
             transition: transform 0.3s ease, background-color 0.3s ease;
-            margin: 10px;
-            display: inline-block;
+            margin: 10px 0; /* Yalnızca dikey mesafe ekledik */
+            width: 80%; /* Butonları %80 genişliğinde yapıyoruz */
+            display: block;
         }
         button:hover {
             background-color: #83a168;
@@ -50,18 +51,12 @@
         /* Ekran boyutlarına göre butonların konumunu düzenle */
         @media screen and (max-width: 600px) {
             button {
+                margin: 15px auto; /* Yalnızca dikey mesafe artırıldı */
                 width: 80%;
-                margin: 10px auto;
-                display: block;
             }
 
             #message {
                 font-size: 24px;
-            }
-
-            /* Evet ve Hayır butonları arasındaki mesafeyi artır */
-            #yesButton, #noButton {
-                margin-top: 20px;
             }
         }
 
@@ -131,10 +126,7 @@
             let buttonYes = document.createElement('button');
             buttonYes.innerText = 'Evet';
             buttonYes.id = 'yesButton'; // ID ekle
-            buttonYes.style.position = 'absolute';
-            buttonYes.style.top = '60%';
-            buttonYes.style.left = '50%';
-            buttonYes.style.transform = 'translateX(-50%)'; // Evet butonunu ortala
+            buttonYes.style.position = 'relative';
             buttonYes.onclick = showHeartsAndConfetti; // Kalp ve konfeti için fonksiyonu çağır
             document.body.appendChild(buttonYes);
 
@@ -142,10 +134,7 @@
             let buttonNo = document.createElement('button');
             buttonNo.innerText = 'Hayır';
             buttonNo.id = 'noButton'; // ID ekle
-            buttonNo.style.position = 'absolute';
-            buttonNo.style.top = '70%';
-            buttonNo.style.left = '50%';
-            buttonNo.style.transform = 'translateX(-50%)'; // Hayır butonunu ortala
+            buttonNo.style.position = 'relative';
             buttonNo.disabled = true;  // Hayır butonunu devre dışı bırak
             document.body.appendChild(buttonNo);
         }
@@ -190,6 +179,7 @@
     </script>
 </body>
 </html>
+
 
 
 
