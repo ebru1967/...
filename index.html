@@ -58,6 +58,11 @@
             #message {
                 font-size: 24px;
             }
+
+            /* Evet ve Hayır butonları arasındaki mesafeyi artır */
+            #yesButton, #noButton {
+                margin-top: 20px;
+            }
         }
 
         .confetti {
@@ -125,6 +130,7 @@
             // Evet butonunu ekle
             let buttonYes = document.createElement('button');
             buttonYes.innerText = 'Evet';
+            buttonYes.id = 'yesButton'; // ID ekle
             buttonYes.style.position = 'absolute';
             buttonYes.style.top = '60%';
             buttonYes.style.left = '50%';
@@ -135,6 +141,7 @@
             // Hayır butonunu ekle ama işlevsizlik ver
             let buttonNo = document.createElement('button');
             buttonNo.innerText = 'Hayır';
+            buttonNo.id = 'noButton'; // ID ekle
             buttonNo.style.position = 'absolute';
             buttonNo.style.top = '70%';
             buttonNo.style.left = '50%';
