@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sürpriz!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #c177ac, #99788f);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            position: relative;
+            flex-direction: column;
+        }
+        #message {
+            font-size: 32px;
+            color: white;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            opacity: 1;
+            position: absolute;
+            top: 20%;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: hwb(248 27% 41% / 0.558);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #83a168;
+            transform: scale(1.1);
+        }
+        button:active {
+            background-color: #003f7f;
+            transform: scale(0.95);
+        }
+        .confetti {
+            position: absolute;
+            z-index: 1;
+            animation: confettiFall 3s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes confettiFall {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(500px); }
+        }
+        .heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 200px;
+            color: red;
+            animation: heartAnimation 1s infinite;
+        }
+        @keyframes heartAnimation {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div id="message">Sana özel bir sürprizim var! 🎉</div>
+    <button id="surpriseBtn" onclick="showSurprise()">Tıkla!</button>
+    
+    <script>
+        function showSurprise() {
+            // Sürpriz mesajını göster
+            document.getElementById("message").innerText = "Sen harika bir dostsun! 😊";
+
+            // "Tıkla!" butonunu gizle
+            document.getElementById("surpriseBtn").style.display = "none";
+            
+            // Mesajın 2 saniye sonra değişmesini bekle
+            setTimeout(() => {
+                askLoveQuestion();
+            }, 2000);
+
+            // Arka plan değişimi
+            document.body.style.background = "linear-gradient(135deg, #6a11cb, #2575fc)";
+        }
+
+        function askLoveQuestion() {
+            // "Beni seviyor musun?" sorusunu ekle
+            let message = document.createElement('div');
+            message.innerHTML = "Beni seviyor musun? ❤️";
+            message.style.fontSize = '24px';
+            message.style.color = 'white';
+            message.style.position = 'absolute';
+            message.style.top = '50%';
+            message.style.left = '50%';
+            message.style.transform = 'translate(-50%, -50%)';
+            document.body.appendChild(message);
+            
+            // Evet butonunu ekle
+            let buttonYes = document.createElement('button');
+            buttonYes.innerText = 'Evet';
+            buttonYes.style.position = 'absolute';
+            buttonYes.style.top = '60%';
+            buttonYes.style.left = '40%';
+            buttonYes.onclick = showHeartsAndConfetti; // Kalp ve konfeti için fonksiyonu çağır
+            document.body.appendChild(buttonYes);
+
+            // Hayır butonunu ekle ama işlevsizlik ver
+            let buttonNo = document.createElement('button');
+            buttonNo.innerText = 'Hayır';
+            buttonNo.style.position = 'absolute';
+            buttonNo.style.top = '60%';
+            buttonNo.style.left = '60%';
+            buttonNo.disabled = true;  // Hayır butonunu devre dışı bırak
+            document.body.appendChild(buttonNo);
+        }
+
+        function showHeartsAndConfetti() {
+            // Kalp animasyonu ve konfeti göster
+            showHearts();
+            createConfetti();
+        }
+
+        function showHearts() {
+            // Kalp animasyonu göster
+            let heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            document.body.appendChild(heart);
+        }
+
+        function createConfetti() {
+            // Konfeti efekti oluştur
+            for (let i = 0; i < 50; i++) {
+                let confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                confetti.style.backgroundColor = getRandomColor();
+                confetti.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+                document.body.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+
+        function getRandomColor() {
+            const colors = ['#FF6347', '#FFD700', '#ADFF2F', '#1E90FF', '#FF1493', '#8A2BE2'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
+</body>
+</html>
+
+
